@@ -1,0 +1,629 @@
+﻿<Window x:Class="TypeClient.StatsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TypeClient" xmlns:viewmodels="clr-namespace:TypeClient.ViewModels" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" d:DataContext="{d:DesignInstance Type=viewmodels:StatsWindowViewModel}"
+        mc:Ignorable="d"
+        WindowState="Maximized" 
+        PreviewKeyDown="Window_PreviewKeyDown"
+        Background="#333333"
+        Height="920" Width="1520">
+    <Window.Resources>
+        <Style TargetType="TabItem">
+            <Setter Property="Background" Value="#222222"></Setter>
+            <Setter Property="Foreground" Value="#a4a4a4"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Grid>
+                            <Border 
+                                Name="Border"
+                                Background="DarkSlateGray"
+                                BorderBrush="WhiteSmoke" 
+                                BorderThickness="1,1,1,1" 
+                                CornerRadius="2,12,0,0" >
+                                <ContentPresenter x:Name="ContentSite"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    ContentSource="Header"
+                                    Margin="12,2,12,2"
+                                    RecognizesAccessKey="True"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Panel.ZIndex" Value="100" />
+                                <Setter TargetName="Border" Property="Background" Value="#1E3232" />
+                                <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
+                                <Setter Property="Background" Value="#1E3232"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TabControl BorderThickness="0">
+            <TabItem Header="Overview"  BorderThickness="0">
+                <Grid Background="#333333">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25*"></RowDefinition>
+                        <RowDefinition Height="20*"></RowDefinition>
+                        <RowDefinition Height="20*"></RowDefinition>
+
+                    </Grid.RowDefinitions>
+                    <Border Background="#222222" Grid.Row="1" Grid.ColumnSpan="3" Width="1300" Height="150">
+                        <Border.Style >
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="35"></Setter>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    <Border Background="#222222" Grid.Row="2" Grid.ColumnSpan="3" Width="1300" Height="200">
+                        <Border.Style >
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="35"></Setter>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    <Border Background="#222222" Grid.Row="0" Grid.ColumnSpan="3" Width="1400" Height="200">
+                        <Border.Style >
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="35"></Setter>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Width="150" Height="150" Source="{Binding Path=Client.Logo}"></Image>
+                        <StackPanel Margin="50,20,0,0">
+                            <TextBlock  Text="{Binding Path=Client.Nickname}" FontSize="50" FontWeight="Bold" FontFamily="Nexa" Foreground="WhiteSmoke"></TextBlock>
+                            <TextBlock Margin="0,30,0,0" Text="{Binding Path=Client.Login}" FontSize="30" FontWeight="Bold" FontFamily="Nexa" Foreground="#777777"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock  Text="Tests Completed" Foreground="#4c4c4c" FontSize="35"></TextBlock>
+                        <TextBlock  Text="{Binding Path=Client.TestCount}" Foreground="WhiteSmoke" FontSize="65" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock  Text="Time Typing" Foreground="#4c4c4c" FontSize="35"></TextBlock>
+                        <TextBlock  Text="{Binding Path=Client.TypingTime}" Foreground="WhiteSmoke" FontSize="65" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                    </StackPanel>
+                    <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="35" FontWeight="Bold" FontFamily="Nexa" Foreground="#777777" Text="All-Time Leaderboards"></TextBlock>
+                    <TextBlock Margin="0,0,80,0"  Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="40" FontWeight="Bold" FontFamily="Nexa" Foreground="#777777" Text="Best Results"></TextBlock>
+                    <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Center">
+                        <StackPanel>
+                            <TextBlock Text="15 seconds" FontSize="30" FontWeight="Bold" FontFamily="Nexa" Foreground="#777777"></TextBlock>
+                            <TextBlock  Text="{Binding Path=Client15SPlace}" FontSize="50" FontWeight="Bold" FontFamily="Nexa" Foreground="WhiteSmoke" Margin="0,10,0,0"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Margin="60,0,0,0">
+                            <TextBlock Text="30 seconds" FontSize="30" FontWeight="Bold" FontFamily="Nexa" Foreground="#777777"></TextBlock>
+                            <TextBlock  Text="{Binding Path=Client30SPlace}" FontSize="50" FontWeight="Bold" FontFamily="Nexa" Foreground="WhiteSmoke" Margin="0,10,0,0"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Margin="60,0,0,0">
+                            <TextBlock Text="60 seconds" FontSize="30" FontWeight="Bold" FontFamily="Nexa" Foreground="#777777"></TextBlock>
+                            <TextBlock  Text="{Binding Path=Client60SPlace}" FontSize="50" FontWeight="Bold" FontFamily="Nexa" Foreground="WhiteSmoke" Margin="0,10,0,0"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Margin="60,0,0,0">
+                            <TextBlock Text="120 seconds" FontSize="30" FontWeight="Bold" FontFamily="Nexa" Foreground="#777777"></TextBlock>
+                            <TextBlock  Text="{Binding Path=Client120SPlace}" FontSize="50" FontWeight="Bold" FontFamily="Nexa" Foreground="WhiteSmoke" Margin="0,10,0,0"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Center">
+                        <StackPanel>
+                            <TextBlock Text="15 seconds" FontSize="30" FontWeight="Bold" FontFamily="Nexa" Foreground="#777777"></TextBlock>
+                            <TextBlock  Text="{Binding Path=Best15SResult.Wpm}" FontSize="50" FontWeight="Bold" FontFamily="Nexa" Foreground="WhiteSmoke" Margin="0,10,0,0"></TextBlock>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock Visibility="{Binding Path=Best15SVisibility}"   Text="{Binding Path=Best15SResult.Accuracy}" FontSize="42" FontWeight="Bold" FontFamily="Nexa" Foreground="#a4a4a4" ></TextBlock>
+                                <TextBlock Visibility="{Binding Path=Best15SVisibility}"   Text="%" FontSize="42" FontWeight="Bold" FontFamily="Nexa" Foreground="#a4a4a4" ></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="60,0,0,0">
+                            <TextBlock Text="30 seconds" FontSize="30" FontWeight="Bold" FontFamily="Nexa" Foreground="#777777"></TextBlock>
+                            <TextBlock  Text="{Binding Path=Best30SResult.Wpm}" FontSize="50" FontWeight="Bold" FontFamily="Nexa" Foreground="WhiteSmoke" Margin="0,10,0,0"></TextBlock>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock  Visibility="{Binding Path=Best30SVisibility}"  Text="{Binding Path=Best30SResult.Accuracy}" FontSize="42" FontWeight="Bold" FontFamily="Nexa" Foreground="#a4a4a4" ></TextBlock>
+                                <TextBlock Visibility="{Binding Path=Best30SVisibility}"   Text="%" FontSize="42" FontWeight="Bold" FontFamily="Nexa" Foreground="#a4a4a4" ></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="60,0,0,0">
+                            <TextBlock Text="60 seconds" FontSize="30" FontWeight="Bold" FontFamily="Nexa" Foreground="#777777"></TextBlock>
+                            <TextBlock  Text="{Binding Path=Best60SResult.Wpm}" FontSize="50" FontWeight="Bold" FontFamily="Nexa" Foreground="WhiteSmoke" Margin="0,10,0,0"></TextBlock>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock Visibility="{Binding Path=Best60SVisibility}"   Text="{Binding Path=Best60SResult.Accuracy}" FontSize="42" FontWeight="Bold" FontFamily="Nexa" Foreground="#a4a4a4" ></TextBlock>
+                                <TextBlock Visibility="{Binding Path=Best60SVisibility}"   Text="%" FontSize="42" FontWeight="Bold" FontFamily="Nexa" Foreground="#a4a4a4" ></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="60,0,0,0">
+                            <TextBlock Text="120 seconds" FontSize="30" FontWeight="Bold" FontFamily="Nexa" Foreground="#777777"></TextBlock>
+                            <TextBlock  Text="{Binding Path=Best120SResult.Wpm}" FontSize="50" FontWeight="Bold" FontFamily="Nexa" Foreground="WhiteSmoke" Margin="0,10,0,0"></TextBlock>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock  Visibility="{Binding Path=Best120SVisibility}"  Text="{Binding Path=Best120SResult.Accuracy}" FontSize="42" FontWeight="Bold" FontFamily="Nexa" Foreground="#a4a4a4" ></TextBlock>
+                                <TextBlock Visibility="{Binding Path=Best120SVisibility}"  Text="%" FontSize="42" FontWeight="Bold" FontFamily="Nexa" Foreground="#a4a4a4" ></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Visibility="{Binding Path=IsEditProfile}" Header="Profile">
+                <Grid Background="#333333">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25*"></RowDefinition>
+                        <RowDefinition Height="25*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Foreground="#C5C5C5"  Text="Login" FontSize="45" FontWeight="Bold" FontFamily="Nexa"></TextBlock>
+                        <Border Background="#222222"  BorderThickness="1"
+        CornerRadius="10" Width="300" Height="80">
+                            <TextBox IsReadOnly="True" Text="{Binding Path=Client.Login,UpdateSourceTrigger=PropertyChanged}" Background="Transparent" BorderThickness="0" Foreground="#C5C5C5"
+             HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5"
+             FontFamily="Nexa" FontSize="45" FontWeight="Bold">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="Opacity" Value="0.8" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Opacity" Value="1" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Border>
+                        <TextBlock Margin="0,20,0,0" Foreground="#C5C5C5"  Text="Nickname" FontSize="45" FontWeight="Bold" FontFamily="Nexa" ></TextBlock>
+                        <Border Background="#222222"  BorderThickness="1"
+        CornerRadius="10" Width="300" Height="80">
+                            <TextBox Text="{Binding Path=Client.Nickname,UpdateSourceTrigger=PropertyChanged}" Background="Transparent" BorderThickness="0" Foreground="#C5C5C5"
+             HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5"
+             FontFamily="Nexa" FontSize="35" FontWeight="Bold">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="Opacity" Value="0.8" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Opacity" Value="1" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Foreground="#C5C5C5"  Text="Email" FontSize="45" FontWeight="Bold" FontFamily="Nexa"></TextBlock>
+                        <Border Background="#222222"  BorderThickness="1"
+        CornerRadius="10" Width="400" Height="80">
+                            <TextBox Text="{Binding Path=Client.Email,UpdateSourceTrigger=PropertyChanged}" Background="Transparent" BorderThickness="0" Foreground="#C5C5C5"
+             HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5"
+             FontFamily="Nexa" FontSize="32" FontWeight="Bold">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="Opacity" Value="0.8" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Opacity" Value="1" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Border>
+                    </StackPanel>
+                    <Button Command="{Binding Path=ChangePassword}" Content="Change Password" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalContentAlignment="Center">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Margin="0,0,0,-11">
+                                    <ContentPresenter Margin="5" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="#E9D8D8" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Foreground" Value="#8C8C8C" />
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                                <Setter Property="FontSize" Value="50" />
+                                <Setter Property="FontFamily" Value="Nexa" />
+                                <Setter Property="FontStyle" Value="Italic" />
+                                <Setter Property="FontWeight" Value="DemiBold" />
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="BorderThickness" Value="0" />
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Grid.Column="0" Grid.Row="1"  Height="250" Width="250" Command="{Binding Path=Logout}"  BorderThickness="0" Background="Transparent" >
+                        <Button.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate  TargetType="Button">
+                                            <Image x:Name="ScreenImage" Source="{Binding Path=TakeAScreenShotImage}">
+                                            </Image>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="ScreenImage" Property="Opacity" Value="0.5" />
+                                                    <!-- Background color on hover -->
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Column="2" BorderBrush="Transparent" Grid.Row="2" Height="120" Width="400" Content="Save changes" Command="{Binding Path=ChangeProfile}" Background="#222222" FontSize="50" FontWeight="Bold">
+                        <Button.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Foreground" Value="#C5C5C5" />
+                                <!-- Default foreground color -->
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="25">
+                                                <!-- Rounded corner effect -->
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#636363" />
+                                                    <!-- Background color when button is disabled -->
+                                                    <Setter Property="Foreground" Value="#c2d1c9" />
+                                                    <!-- Foreground color when button is disabled -->
+                                                    <Setter Property="Opacity" Value="1" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button  Height="300" Width="300" Command="{Binding Path=ChangeImage}"  BorderThickness="0" Background="Transparent" >
+                        <Button.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Foreground" Value="Black" />
+                                <!-- Default foreground color -->
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Ellipse x:Name="BackgroundEllipse" >
+                                                <Ellipse.Fill>
+                                                    <ImageBrush ImageSource="{Binding Path=Client.Logo}"></ImageBrush>
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="BackgroundEllipse" Property="Opacity" Value="0.5" />
+                                                    <!-- Background color on hover -->
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Results">
+                <Grid Background="#333333">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                        <ColumnDefinition Width="20*"></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="23*"></RowDefinition>
+                        <RowDefinition Height="23*"></RowDefinition>
+                        <RowDefinition Height="23*"></RowDefinition>
+                        <RowDefinition Height="23*"></RowDefinition>
+                        <RowDefinition Height="30*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <lvc:CartesianChart  Background="#333333" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4" Series="{Binding ResultsChart}" LegendLocation="None">
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis LabelsRotation="-90" Title="Results" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" MinValue="0" LabelFormatter="{Binding Path=Formatter}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis LabelsRotation="-90" Title="" Labels="{Binding Labels}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                    </lvc:CartesianChart>
+                    <StackPanel VerticalAlignment="Center" Grid.Row="5">
+                        <Button  Command="{Binding Path=SetWpm}" Content="Show Wpm" HorizontalAlignment="Center">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" >
+                                        <ContentPresenter Margin="5" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#E9D8D8" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Foreground" Value="{Binding Path=IsWpmBrush}"></Setter>
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="FontSize" Value="40" />
+                                    <Setter Property="FontFamily" Value="Nexa" />
+                                    <Setter Property="FontStyle" Value="Italic" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button  Command="{Binding Path=SetAcc}" Content="Show Acc" HorizontalAlignment="Center">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" >
+                                        <ContentPresenter Margin="5" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#E9D8D8" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Foreground" Value="{Binding Path=IsAccBrush}"></Setter>
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="FontSize" Value="40" />
+                                    <Setter Property="FontFamily" Value="Nexa" />
+                                    <Setter Property="FontStyle" Value="Italic" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Row="5" Grid.Column="1">
+                        <Button  Command="{Binding Path=SetErr}" Content="Show Errors" HorizontalAlignment="Center">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" >
+                                        <ContentPresenter Margin="5" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#E9D8D8" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Foreground" Value="{Binding Path=IsErrBrush}"></Setter>
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="FontSize" Value="40" />
+                                    <Setter Property="FontFamily" Value="Nexa" />
+                                    <Setter Property="FontStyle" Value="Italic" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button  Command="{Binding Path=SetRaw}" Content="Show Raw" HorizontalAlignment="Center">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" >
+                                        <ContentPresenter Margin="5" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#E9D8D8" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Foreground" Value="{Binding Path=IsRawBrush}"></Setter>
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="FontSize" Value="40" />
+                                    <Setter Property="FontFamily" Value="Nexa" />
+                                    <Setter Property="FontStyle" Value="Italic" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Row="5" Grid.Column="2">
+                        <Button  Command="{Binding Path=SetTime15}" Content="Show Time 15" HorizontalAlignment="Center">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" >
+                                        <ContentPresenter Margin="5" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#E9D8D8" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Foreground" Value="{Binding Path=IsTime15Brush}"></Setter>
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="FontSize" Value="40" />
+                                    <Setter Property="FontFamily" Value="Nexa" />
+                                    <Setter Property="FontStyle" Value="Italic" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button  Command="{Binding Path=SetTime30}" Content="Show Time 30" HorizontalAlignment="Center">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" >
+                                        <ContentPresenter Margin="5" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#E9D8D8" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Foreground" Value="{Binding Path=IsTime30Brush}"></Setter>
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="FontSize" Value="40" />
+                                    <Setter Property="FontFamily" Value="Nexa" />
+                                    <Setter Property="FontStyle" Value="Italic" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Row="5" Grid.Column="3">
+                        <Button  Command="{Binding Path=SetTime60}" Content="Show Time 60" HorizontalAlignment="Center">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" >
+                                        <ContentPresenter Margin="5" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#E9D8D8" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Foreground" Value="{Binding Path=IsTime60Brush}"></Setter>
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="FontSize" Value="40" />
+                                    <Setter Property="FontFamily" Value="Nexa" />
+                                    <Setter Property="FontStyle" Value="Italic" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button  Command="{Binding Path=SetTime120}" Content="Show Time 120" HorizontalAlignment="Center">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" >
+                                        <ContentPresenter Margin="5" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#E9D8D8" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Foreground" Value="{Binding Path=IsTime120Brush}"></Setter>
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="FontSize" Value="40" />
+                                    <Setter Property="FontFamily" Value="Nexa" />
+                                    <Setter Property="FontStyle" Value="Italic" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Details">
+                <Grid Background="#333333">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25*"></RowDefinition>
+                        <RowDefinition Height="25*"></RowDefinition>
+                        <RowDefinition Height="25*"></RowDefinition>
+                        <RowDefinition Height="25*"></RowDefinition>
+                        <RowDefinition Height="25*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel  Grid.ColumnSpan="3" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock  Foreground="#4c4c4c" FontSize="45" FontFamily="Nexa" Text="Overall words typed: " TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock  Text="{Binding Path=OverallWordsTyped}" Foreground="#E9D8D8" FontSize="65" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock  Foreground="#4c4c4c" FontSize="40" FontFamily="Nexa" Text="Tests Completed" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock  Text="{Binding Path=Client.TestCount}" Foreground="#E9D8D8" FontSize="60" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock  Foreground="#4c4c4c" FontSize="40" FontFamily="Nexa" Text="Time Typing" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock  Text="{Binding Path=Client.TypingTime}" Foreground="#E9D8D8" FontSize="60" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="0" Grid.Row="2"  VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock  Foreground="#4c4c4c" FontSize="35" FontFamily="Nexa" Text="Highest Wpm" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock  Text="{Binding Path=HightestWpm}" Foreground="#E9D8D8" FontSize="55" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="1" Grid.Row="2"  VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock  Foreground="#4c4c4c" FontSize="35" FontFamily="Nexa" Text="Average Wpm" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock  Text="{Binding Path=AverageWpm}" Foreground="#E9D8D8" FontSize="55" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="2" Grid.Row="2"  VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock  Foreground="#4c4c4c" FontSize="35" FontFamily="Nexa" Text="Average Wpm(Last 10 tests)" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock  Text="{Binding Path=AverageLast10Wpm}" Foreground="#E9D8D8" FontSize="55" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="0" Grid.Row="3"  VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock  Foreground="#4c4c4c" FontSize="35" FontFamily="Nexa" Text="Highest Acc" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="{Binding Path=HightestAcc}" Foreground="#E9D8D8" FontSize="55" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                            <TextBlock  Text="%" Foreground="#E9D8D8" FontSize="55" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="1" Grid.Row="3"  VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock  Foreground="#4c4c4c" FontSize="35" FontFamily="Nexa" Text="Average Acc" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="{Binding Path=AverageAcc}" Foreground="#E9D8D8" FontSize="55" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                            <TextBlock  Text="%" Foreground="#E9D8D8" FontSize="55" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="2" Grid.Row="3"  VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock  Foreground="#4c4c4c" FontSize="35" FontFamily="Nexa" Text="Average Acc(last 10 tests)" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="{Binding Path=AverageLast10Acc}" Foreground="#E9D8D8" FontSize="55" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                            <TextBlock  Text="%" Foreground="#E9D8D8" FontSize="55" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

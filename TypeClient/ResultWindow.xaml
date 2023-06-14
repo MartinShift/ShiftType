@@ -1,0 +1,84 @@
+﻿<Window x:Class="TypeClient.ResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TypeClient" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:viewmodels="clr-namespace:TypeClient.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ResultWindowViewModel}"
+        mc:Ignorable="d"
+        PreviewKeyDown="Window_PreviewKeyDown"
+        Background="#333333"
+        Title="Results" Height="850" Width="1560">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="30*"></ColumnDefinition>
+            <ColumnDefinition Width="30*"></ColumnDefinition>
+            <ColumnDefinition Width="30*"></ColumnDefinition>
+            <ColumnDefinition Width="30*"></ColumnDefinition>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock  Text="wpm" Foreground="#4c4c4c" FontSize="30"></TextBlock>
+            <TextBlock  Text="{Binding Path=Wpm}" Foreground="#007acc" FontSize="65" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock  Text="acc" Foreground="#4c4c4c" FontSize="30"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock  Text="{Binding Path=Accuracy}" Foreground="#007acc" FontSize="60" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+                <TextBlock  Text="%" Foreground="#007acc" FontSize="60" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+            </StackPanel>
+            
+        </StackPanel>
+        <StackPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock  Text="raw wpm" Foreground="#4c4c4c" FontSize="30"></TextBlock>
+            <TextBlock  Text="{Binding Path=Raw}" Foreground="#007acc" FontSize="65" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock  Text="Characters" Foreground="#4c4c4c" FontSize="30"></TextBlock>
+            <TextBlock  Text="{Binding Path=Charachters}" Foreground="#007acc" FontSize="60" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock  Text="Errors" Foreground="#4c4c4c" FontSize="30"></TextBlock>
+            <TextBlock  Text="{Binding Path=Errors}" Foreground="#007acc" FontSize="60" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock  Text="Time spent(s)" Foreground="#4c4c4c" FontSize="30"></TextBlock>
+            <TextBlock  Text="{Binding Path=Seconds}" Foreground="#007acc" FontSize="60" FontFamily="Nexa" FontWeight="DemiBold"></TextBlock>
+        </StackPanel>
+        <lvc:CartesianChart Background="#333333" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="4" Series="{Binding ResultsChart}" LegendLocation="None">
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis LabelsRotation="-90" Title="Seconds" Labels="{Binding Labels}"></lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis LabelsRotation="-90" Title="Average Words Per Minute" MinValue="0" LabelFormatter="{Binding Path=Formatter}"></lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
+        <Button Grid.Column="4" Grid.Row="4"  Height="100" Width="100" Command="{Binding Path=Exit}"  BorderThickness="0" Background="Transparent" >
+            <Button.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate  TargetType="Button">
+                                <Image x:Name="ScreenImage" Source="{Binding Path=TakeAScreenShotImage}">
+                                </Image>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ScreenImage" Property="Opacity" Value="0.5" />
+                                        <!-- Background color on hover -->
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
+</Window>
