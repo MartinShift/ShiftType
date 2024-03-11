@@ -1,0 +1,12 @@
+D:\Mein progectos\ShiftType\CommonLibrary\bin\Debug\net6.0\CommonLibrary.deps.json
+D:\Mein progectos\ShiftType\CommonLibrary\bin\Debug\net6.0\CommonLibrary.dll
+D:\Mein progectos\ShiftType\CommonLibrary\bin\Debug\net6.0\CommonLibrary.pdb
+D:\Mein progectos\ShiftType\CommonLibrary\obj\Debug\net6.0\CommonLibrary.csproj.AssemblyReference.cache
+D:\Mein progectos\ShiftType\CommonLibrary\obj\Debug\net6.0\CommonLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\Mein progectos\ShiftType\CommonLibrary\obj\Debug\net6.0\CommonLibrary.AssemblyInfoInputs.cache
+D:\Mein progectos\ShiftType\CommonLibrary\obj\Debug\net6.0\CommonLibrary.AssemblyInfo.cs
+D:\Mein progectos\ShiftType\CommonLibrary\obj\Debug\net6.0\CommonLibrary.csproj.CoreCompileInputs.cache
+D:\Mein progectos\ShiftType\CommonLibrary\obj\Debug\net6.0\CommonLibrary.dll
+D:\Mein progectos\ShiftType\CommonLibrary\obj\Debug\net6.0\refint\CommonLibrary.dll
+D:\Mein progectos\ShiftType\CommonLibrary\obj\Debug\net6.0\CommonLibrary.pdb
+D:\Mein progectos\ShiftType\CommonLibrary\obj\Debug\net6.0\ref\CommonLibrary.dll

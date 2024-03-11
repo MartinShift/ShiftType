@@ -1,0 +1,290 @@
+﻿<Window x:Class="TypeClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TypeClient" xmlns:viewmodels="clr-namespace:TypeClient.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        mc:Ignorable="d"
+        Background="#333333"
+        WindowState="Maximized"
+        Title="MainWindow" Height="1080" Width="1920" KeyDown="Window_KeyDown" PreviewTextInput="Window_PreviewTextInput" PreviewKeyDown="Window_PreviewKeyDown">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="32*"></ColumnDefinition>
+            <ColumnDefinition Width="32*"></ColumnDefinition>
+            <ColumnDefinition Width="32*"></ColumnDefinition>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Path=SecondsLeft}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="28" FontFamily="Banana Grotesk" Foreground="BlueViolet" Opacity="0.8"></TextBlock>
+        <RichTextBox Focusable="False"  Background="#333333" x:Name="CheckTextBox" BorderThickness="0" Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="3" Grid.RowSpan="4"  FontSize="38" FontFamily="Banana Grotesk" Foreground="#d1d0c5"/>
+        <Button Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"  Command="{Binding Path=SelectLanguage}" Content="{Binding Path=SelectedLanguage}" HorizontalAlignment="Center" >
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Margin="0,0,0,-11">
+                        <ContentPresenter Margin="5" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="#E9D8D8" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Foreground" Value="#8C8C8C" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="FontSize" Value="50" />
+                    <Setter Property="FontFamily" Value="Nexa" />
+                    <Setter Property="FontStyle" Value="Italic" />
+                    <Setter Property="FontWeight" Value="DemiBold" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
+                </Style>
+            </Button.Style>
+        </Button>
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Grid.Column="3" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Image Width="80" Height="80" Source="{Binding Path=Client.Logo}"></Image>
+            <Button Command="{Binding Path=GotoProfileOrLogin}" Content="{Binding Path=UserName}" HorizontalAlignment="Center" >
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Margin="0,0,0,-11">
+                        <ContentPresenter Margin="5" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="#E9D8D8" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Foreground" Value="#8C8C8C" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="FontSize" Value="28" />
+                    <Setter Property="FontFamily" Value="Nexa" />
+                    <Setter Property="FontStyle" Value="Italic" />
+                    <Setter Property="FontWeight" Value="DemiBold" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
+                </Style>
+            </Button.Style>
+        </Button>
+            <Button Visibility="{Binding Path=LogoutVisibility}" Height="80" Width="80" Margin="30,0,0,0" Command="{Binding Path=LogoutOrLogin}">
+                <Button.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate  TargetType="Button">
+                                    <Image x:Name="ScreenImage" Source="{Binding Path=LogoutImage}">
+                                    </Image>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="ScreenImage" Property="Opacity" Value="0.5" />
+                                            <!-- Background color on hover -->
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+        <Border  Background="#222222" Width="900" Height="90" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="35"></Setter>
+                </Style>
+            </Border.Style>
+        </Border>
+        <StackPanel Orientation="Horizontal" Background="Transparent" Width="1000" Height="90"  Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Command="{Binding Path=ForgotPassword}" Content="time" Margin="100,0,0,0" VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Margin="0,0,0,-11">
+                            <ContentPresenter Margin="5" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#E9D8D8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground" Value="#8C8C8C" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="FontSize" Value="35" />
+                        <Setter Property="FontFamily" Value="Nexa" />
+                        <Setter Property="FontStyle" Value="Italic" />
+                        <Setter Property="FontWeight" Value="DemiBold" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button  Command="{Binding Path=Set15STimer}" Content="15" Margin="100,0,0,0" VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Margin="0,0,0,-11">
+                            <ContentPresenter Margin="5" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#E9D8D8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground" Value="{Binding Path=Timer15SBrush}"></Setter>
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="FontSize" Value="35" />
+                        <Setter Property="FontFamily" Value="Nexa" />
+                        <Setter Property="FontStyle" Value="Italic" />
+                        <Setter Property="FontWeight" Value="DemiBold" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button  Command="{Binding Path=Set30STimer}" Content="30" Margin="100,0,0,0" VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Margin="0,0,0,-11">
+                            <ContentPresenter Margin="5" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#E9D8D8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground" Value="{Binding Path=Timer30SBrush}"></Setter>
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="FontSize" Value="35" />
+                        <Setter Property="FontFamily" Value="Nexa" />
+                        <Setter Property="FontStyle" Value="Italic" />
+                        <Setter Property="FontWeight" Value="DemiBold" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button  Command="{Binding Path=Set60STimer}" Content="60" Margin="100,0,0,0" VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Margin="0,0,0,-11">
+                            <ContentPresenter Margin="5" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#E9D8D8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground" Value="{Binding Path=Timer60SBrush}"></Setter>
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="FontSize" Value="35" />
+                        <Setter Property="FontFamily" Value="Nexa" />
+                        <Setter Property="FontStyle" Value="Italic" />
+                        <Setter Property="FontWeight" Value="DemiBold" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button  Command="{Binding Path=Set120STimer}" Content="120" Margin="100,0,0,0" VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Margin="0,0,0,-11">
+                            <ContentPresenter Margin="5" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#E9D8D8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground" Value="{Binding Path=Timer120SBrush}"></Setter>
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="FontSize" Value="35" />
+                        <Setter Property="FontFamily" Value="Nexa" />
+                        <Setter Property="FontStyle" Value="Italic" />
+                        <Setter Property="FontWeight" Value="DemiBold" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+        <Button Grid.Column="4" Height="80" Width="80" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding Path=OpenLeaderboards}">
+            <Button.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate  TargetType="Button">
+                                <Image x:Name="ScreenImage" Source="{Binding Path=LeaderboardImage}">
+                                </Image>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ScreenImage" Property="Opacity" Value="0.5" />
+                                        <!-- Background color on hover -->
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Popup Width="500" Height="600" x:Name="languagePopup" IsOpen="{Binding Path=IsPopupOpen}" Placement="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="7" StaysOpen="False">
+            <ListBox Background="#222222" FontSize="30" FontFamily="Nexa" FontWeight="Bold" Foreground="#8C8C8C" ItemsSource="{Binding LanguageList}" SelectedItem="{Binding Path=SelectedLanguage}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#E9D8D8"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </Popup>
+    </Grid>
+</Window>
