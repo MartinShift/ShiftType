@@ -1,0 +1,86 @@
+D:\Mein progectos\ShiftType\TypeClient\bin\Release\net6.0-windows\TypeClient.exe
+D:\Mein progectos\ShiftType\TypeClient\bin\Release\net6.0-windows\TypeClient.deps.json
+D:\Mein progectos\ShiftType\TypeClient\bin\Release\net6.0-windows\TypeClient.runtimeconfig.json
+D:\Mein progectos\ShiftType\TypeClient\bin\Release\net6.0-windows\TypeClient.dll
+D:\Mein progectos\ShiftType\TypeClient\bin\Release\net6.0-windows\TypeClient.pdb
+D:\Mein progectos\ShiftType\TypeClient\bin\Release\net6.0-windows\LiveCharts.dll
+D:\Mein progectos\ShiftType\TypeClient\bin\Release\net6.0-windows\LiveCharts.Wpf.dll
+D:\Mein progectos\ShiftType\TypeClient\bin\Release\net6.0-windows\CommonLibrary.dll
+D:\Mein progectos\ShiftType\TypeClient\bin\Release\net6.0-windows\CommonLibrary.pdb
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.csproj.AssemblyReference.cache
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\EnterEmailCode.g.cs
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\ForgotPasswordWindow.g.cs
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\LoginWindow.g.cs
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\MainWindow.g.cs
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\PasswordChangeWindow.g.cs
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\RegisterWindow.g.cs
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\ResultWindow.g.cs
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\StatsWindow.g.cs
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\App.g.cs
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient_MarkupCompile.cache
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient_MarkupCompile.lref
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\EnterEmailCode.baml
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\ForgotPasswordWindow.baml
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\LoginWindow.baml
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\MainWindow.baml
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\PasswordChangeWindow.baml
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\RegisterWindow.baml
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\ResultWindow.baml
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\StatsWindow.baml
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.g.resources
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.GeneratedMSBuildEditorConfig.editorconfig
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.AssemblyInfoInputs.cache
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.AssemblyInfo.cs
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.csproj.CoreCompileInputs.cache
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.csproj.CopyComplete
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.dll
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\refint\TypeClient.dll
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.pdb
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.genruntimeconfig.cache
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\ref\TypeClient.dll
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\LeaderboardWindow.g.cs
+D:\Mein progectos\ShiftType\TypeClient\obj\Release\net6.0-windows\LeaderboardWindow.baml
+G:\projects\ShiftType\TypeClient\bin\Release\net6.0-windows\TypeClient.exe
+G:\projects\ShiftType\TypeClient\bin\Release\net6.0-windows\TypeClient.deps.json
+G:\projects\ShiftType\TypeClient\bin\Release\net6.0-windows\TypeClient.runtimeconfig.json
+G:\projects\ShiftType\TypeClient\bin\Release\net6.0-windows\TypeClient.dll
+G:\projects\ShiftType\TypeClient\bin\Release\net6.0-windows\TypeClient.pdb
+G:\projects\ShiftType\TypeClient\bin\Release\net6.0-windows\LiveCharts.dll
+G:\projects\ShiftType\TypeClient\bin\Release\net6.0-windows\LiveCharts.Wpf.dll
+G:\projects\ShiftType\TypeClient\bin\Release\net6.0-windows\CommonLibrary.dll
+G:\projects\ShiftType\TypeClient\bin\Release\net6.0-windows\CommonLibrary.pdb
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.csproj.AssemblyReference.cache
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\EnterEmailCode.g.cs
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\ForgotPasswordWindow.g.cs
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\LeaderboardWindow.g.cs
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\LoginWindow.g.cs
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\MainWindow.g.cs
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\PasswordChangeWindow.g.cs
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\RegisterWindow.g.cs
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\ResultWindow.g.cs
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\StatsWindow.g.cs
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\App.g.cs
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient_MarkupCompile.cache
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient_MarkupCompile.lref
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\EnterEmailCode.baml
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\ForgotPasswordWindow.baml
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\LeaderboardWindow.baml
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\LoginWindow.baml
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\MainWindow.baml
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\PasswordChangeWindow.baml
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\RegisterWindow.baml
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\ResultWindow.baml
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\StatsWindow.baml
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.g.resources
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.GeneratedMSBuildEditorConfig.editorconfig
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.AssemblyInfoInputs.cache
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.AssemblyInfo.cs
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.csproj.CoreCompileInputs.cache
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.csproj.CopyComplete
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.dll
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\refint\TypeClient.dll
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.pdb
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\TypeClient.genruntimeconfig.cache
+G:\projects\ShiftType\TypeClient\obj\Release\net6.0-windows\ref\TypeClient.dll
