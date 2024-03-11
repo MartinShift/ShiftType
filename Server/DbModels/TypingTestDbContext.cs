@@ -17,7 +17,7 @@ namespace Server.DbModels
             // SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
 
             var mydata = "D:\\Mein progectos\\ShiftType\\Server\\TypingDb.db";
-            var mydata2 = "D:\\йцуйцу\\Server\\net6.0\\TypingDb.db";
+           // var mydata2 = "D:\\йцуйцу\\Server\\net6.0\\TypingDb.db";
             builder.UseSqlite($"Data Source={mydata}");
         }
         public virtual DbSet<Client> Clients { get; set; }

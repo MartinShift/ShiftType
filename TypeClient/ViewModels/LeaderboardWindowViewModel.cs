@@ -49,7 +49,11 @@ namespace TypeClient.ViewModels
         public void LoadLeaders()
         {
             Leaders.Clear();
-            var leaderboard = Leaderboard.OrderByDescending(x => x.Results.Where(x => x.TimeSpent == TimeState).MaxBy(x => x.Wpm)?.Wpm).ToList();
+            var leaderboard = Leaderboard
+                .OrderByDescending(x => x.Results
+                .Where(x => x.TimeSpent == TimeState)
+                .MaxBy(x => x.Wpm)?.Wpm)
+                .ToList();
             leaderboard.ForEach(x =>
             {
                 Leaders.Add(new(x, x.Results.Where(x => x.TimeSpent == TimeState).MaxBy(x => x.Wpm),leaderboard.FindIndex(y=> x.Login == y.Login) +1));
